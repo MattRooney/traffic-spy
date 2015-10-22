@@ -41,6 +41,10 @@ module TrafficSpy
     end
 
     get '/sources/:identifier' do |identifier|
+      url_hash = Hash.new 0
+      URL.where(:identifier == identifier).each do |object|
+        url_hash[object.url] += 1
+      end
       erb :source_page
     end
 
