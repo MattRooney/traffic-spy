@@ -105,6 +105,14 @@ module TrafficSpy
       erb :event_details
     end
 
+    get '/register' do
+      erb :register
+    end
+
+    get '/data/instructions' do
+      erb :data_instructions
+    end
+
     not_found do
       erb :error
     end
