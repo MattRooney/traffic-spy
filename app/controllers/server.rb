@@ -52,10 +52,10 @@ module TrafficSpy
       @identifier = identifier
 
       @max_min_hash = UrlData.find_min_max(TrafficSpy::Payload, TrafficSpy::URL)
-      @os_breakdown = UrlData.breakdown_os(TrafficSpy::Payload, TrafficSpy::Agent).join
-      @browsers = UrlData.find_browser_data(TrafficSpy::Payload, TrafficSpy::Agent).join
-      @resolution = UrlData.find_resolution(TrafficSpy::Payload)
-      @response_time = UrlData.find_response(TrafficSpy::Payload)
+      @os_breakdown = UrlData.breakdown_os(TrafficSpy::Payload, TrafficSpy::Agent).join( " , " )
+      @browsers = UrlData.find_browser_data(TrafficSpy::Payload, TrafficSpy::Agent).join( " , " )
+      @resolution = UrlData.find_resolution(TrafficSpy::Payload).join( " , " )
+      @response_time = UrlData.find_response(TrafficSpy::Payload).join(" , ")
       @urls_display = @max_min_hash.map { |hash| hash.keys.pop }
       @paths = @urls_display.map { |url| URI.parse(url).path }
       erb :source_page
@@ -66,12 +66,12 @@ module TrafficSpy
         not_found
       end
       @identifier = identifier
-      @referral = UrlData.find_referrals(TrafficSpy::Payload).join
+      @referral = UrlData.find_referrals(TrafficSpy::Payload).join( " , " )
       @shortest_response_time = TrafficSpy::Payload.minimum("responded_in").to_f
       @longest_response_time = TrafficSpy::Payload.maximum("responded_in").to_f
       @average_response_time = TrafficSpy::Payload.average("responded_in").to_f
-      @http_verbs = UrlData.find_http_verbs(TrafficSpy::Payload).join
-      @top_agents = UrlData.find_agents(TrafficSpy::Payload, TrafficSpy::Agent).join
+      @http_verbs = UrlData.find_http_verbs(TrafficSpy::Payload).join( " , " )
+      @top_agents = UrlData.find_agents(TrafficSpy::Payload, TrafficSpy::Agent).join( " , " )
       erb :stats_page
     end
 
