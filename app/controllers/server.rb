@@ -52,8 +52,8 @@ module TrafficSpy
       @identifier = identifier
 
       @max_min_hash = UrlData.find_min_max(TrafficSpy::Payload, TrafficSpy::URL)
-      @os_breakdown = UrlData.breakdown_os(TrafficSpy::Payload, TrafficSpy::Agent)
-      @browsers = UrlData.find_browser_data(TrafficSpy::Payload, TrafficSpy::Agent)
+      @os_breakdown = UrlData.breakdown_os(TrafficSpy::Payload, TrafficSpy::Agent).join
+      @browsers = UrlData.find_browser_data(TrafficSpy::Payload, TrafficSpy::Agent).join
       @resolution = UrlData.find_resolution(TrafficSpy::Payload)
       @response_time = UrlData.find_response(TrafficSpy::Payload)
       @urls_display = @max_min_hash.map { |hash| hash.keys.pop }
