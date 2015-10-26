@@ -83,6 +83,7 @@ module TrafficSpy
       if Source.where(identifier: identifier) == []
         not_found
       end
+
       @identifier = identifier
       event = TrafficSpy::Payload.where(event_id: TrafficSpy::Event.find_by(event_name: event_name).id)
       @event_count = event.count
@@ -109,6 +110,5 @@ module TrafficSpy
     not_found do
       erb :error
     end
-
   end
 end
