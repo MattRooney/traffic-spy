@@ -11,6 +11,7 @@ require 'minitest/autorun'
 require 'minitest/pride'
 require 'capybara'
 require 'pry'
+require 'tilt/erb'
 
 DatabaseCleaner.strategy = :truncation, {except: %w[public.schema_migrations]}
 
