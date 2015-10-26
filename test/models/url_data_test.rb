@@ -24,9 +24,28 @@ require 'json'
 
       assert_equal [{"http://jumpstartlab.com/blog"=>2}, {"http://jumpstartlab.com/test"=>1}], UrlData.find_min_max(TrafficSpy::Payload, TrafficSpy::URL)
     end
-    #  UrlData.breakdown_os(TrafficSpy::Payload, TrafficSpy::Agent).join( " , " )
-    #  UrlData.find_browser_data(TrafficSpy::Payload, TrafficSpy::Agent).join( " , " )
-    #  UrlData.find_resolution(TrafficSpy::Payload).join( " , " )
-    #  UrlData.find_response(TrafficSpy::Payload).join(" , ")
+
+    def test_it_has_an_os_breakdown
+      populate
+
+      assert_equal "OS X 10.8.2", UrlData.breakdown_os(TrafficSpy::Payload, TrafficSpy::Agent).join( " , " )
+    end
+
+    def test_it_finds_browser_data
+      populate
+
+      assert_equal "Chrome", UrlData.find_browser_data(TrafficSpy::Payload, TrafficSpy::Agent).join( " , " )
+    end
+
+    def test_it_can_find_resolution_data
+      populate
+
+      assert_equal "1920 x 1280", UrlData.find_resolution(TrafficSpy::Payload).join( " , " )
+    end
+
+    def test_it_can_find_response_time
+      populate
+      assert_equal "666 , 666 , 37",  UrlData.find_response(TrafficSpy::Payload).join(" , ")
+    end
 
   end
