@@ -160,5 +160,5 @@ class ProcessingRequestTest < ControllerTest
      "resolutionWidth":"1920",
      "resolutionHeight":"1280",
      "ip":"666.666.666.666" }.to_json }
- end
+  end
 end

@@ -4,8 +4,7 @@ class IdentifierViewTest < FeatureTest
   include Capybara::DSL
 
   def test_user_can_view_their_own_identifier_page
-    post '/sources', { identifier:  "jumpstartlab",
-                       rootUrl:     "http://jumpstartlab.com" }
+    populate_sources
     post '/sources/jumpstartlab/data', payload_data
     post '/sources/jumpstartlab/data', payload_data_two
     visit '/sources/jumpstartlab/url/blog'
@@ -17,6 +16,7 @@ class IdentifierViewTest < FeatureTest
     assert page.has_content?("37.0")
 
     assert page.has_content?("Shortest response time")
+    assert page.has_content?("37.0")
 
     assert page.has_content?("Average response time")
     assert page.has_content?("37.0")
