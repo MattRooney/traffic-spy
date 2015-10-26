@@ -1,6 +1,3 @@
-require 'tilt/erb'
-
-
 module TrafficSpy
   class Server < Sinatra::Base
     set :show_exceptions, false
@@ -20,10 +17,6 @@ module TrafficSpy
     end
 
     post '/sources/:identifier/data' do |identifier|
-
-      if Source.where(identifier: identifier) == []
-        not_found
-      end
 
       source = Source.find_by(:identifier => params["identifier"])
       if params["payload"].nil?
