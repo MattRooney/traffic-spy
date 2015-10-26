@@ -50,7 +50,7 @@ class UrlData
       @http_array ||= []
       @http_array << payload.request_type
     end
-    @http_verbs = @http_array.uniq!
+    @http_verbs = @http_array.uniq
 
   end
 
