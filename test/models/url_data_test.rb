@@ -2,6 +2,18 @@ require './test/test_helper'
 require 'json'
 
   class UrlDataTest < ControllerTest
+
+    def test_payload_data_equal_json_data
+      populate_sources
+
+      post '/sources/jumpstartlab/data', payload_data
+
+      assert_equal 1, TrafficSpy::Source.count
+      assert_equal 1, TrafficSpy::Payload.count
+      assert_equal 200, last_response.status
+      assert_equal "Created Successfully", last_response.body
+    end
+
     def populate
       post '/sources', { identifier:  "jumpstartlab",
                          rootUrl:     "http://jumpstartlab.com" }

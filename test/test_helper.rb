@@ -81,6 +81,12 @@ class Minitest::Test
       "ip":"63.29.38.211" }.to_json }
   end
 
+  def populate_sources
+    post '/sources', { identifier:  "jumpstartlab",
+                       rootUrl:     "http://jumpstartlab.com" }
+
+  end
+
 
 end
 
