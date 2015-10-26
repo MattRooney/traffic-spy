@@ -12,6 +12,7 @@ require 'json'
 
     def test_it_can_find_URLs_by_id
       populate
+
       assert_equal 1, TrafficSpy::URL.find(id = 1).id
       assert_equal 2, TrafficSpy::URL.find(id = 2).id
       assert_equal "http://jumpstartlab.com/blog", TrafficSpy::URL.find(id = 1).url
@@ -45,7 +46,8 @@ require 'json'
 
     def test_it_can_find_response_time
       populate
-      assert_equal "666 , 666 , 37",  UrlData.find_response(TrafficSpy::Payload).join(" , ")
+
+      assert_equal "666 , 666 , 666 , 37 , 37",  UrlData.find_response(TrafficSpy::Payload).join(" , ")
     end
 
   end
