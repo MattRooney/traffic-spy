@@ -15,8 +15,8 @@ class IdentifierViewTest < FeatureTest
     assert page.has_content?("OS Breakdown") #user_agent
     assert page.has_content?("Screen Resolution") # resolution_width, resolution_height
     assert page.has_content?("Longest to Shortest Response Times") # responded_in
-    assert page.has_content?("Hyperlinks of each URL")
-    assert page.has_content?("Hyperlink to view event data")
+    assert page.has_content?("URL specific data")
+    assert page.has_content?("View event specific data")
   end
 
 
