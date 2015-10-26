@@ -47,7 +47,7 @@ require 'json'
     def test_it_can_find_response_time
       populate
 
-      assert_equal "666 , 666 , 666 , 37 , 37",  UrlData.find_response(TrafficSpy::Payload).join(" , ")
+      assert_equal "666 , 666 , 37",  UrlData.find_response(TrafficSpy::Payload).join(" , ")
     end
 
   end
